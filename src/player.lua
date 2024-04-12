@@ -1,5 +1,5 @@
 -- create player object
-Player = object:extend()
+Player = Object:extend()
 
 -- player constructor
 function Player:new(name, element)
@@ -8,4 +8,3 @@ function Player:new(name, element)
     self.hand = {}
     self.name = name
 end
-

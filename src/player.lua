@@ -1,5 +1,5 @@
 -- create player object
-Player = object:extend()
+Player = Object:extend()
 
 -- player constructor
 function Player:new(name, element)

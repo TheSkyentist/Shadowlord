@@ -1,6 +1,7 @@
 -- Load at start of game
 function love.load()
     Object = require "lib.classic" -- OOP library
+    require "src.powerCards" -- deck of cards
 end
 
 -- Main game loop

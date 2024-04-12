@@ -5,7 +5,7 @@ function love.load()
     Object = require "lib.classic" -- OOP library
     require "src.player" -- Player class
     require "src.character" -- Character class
-    require "src.powerCards" -- deck of cards
+    require "src.powerCards" -- Deck of cards class
 
     -- Iterate over Elements
     players = {} -- Create players table

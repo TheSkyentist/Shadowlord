@@ -16,7 +16,6 @@ function love.load()
 
         -- Create Master Character
         table.insert(player.characters, Character(element.." Master", "Master", 10))
-        print(player.characters[1].name)
 
         -- TODO
         -- Get one of each type of character

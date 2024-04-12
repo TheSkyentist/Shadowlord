@@ -3,33 +3,26 @@ PowerCards = Object:extend()
 
 -- powercards constructor, generates a sorted deck of cards
 function PowerCards:new()
+
+    -- Create deck table
     self.deck = {}
 
-    for i = 1,8 do
-         table.insert(self.deck, 0)
+    -- Create the deck from the template 
+    local deckTemplate = {{0,8},{2,16},{4,15},{7,10},{10,2}}
+    for i,card in ipairs(deckTemplate) do
+        for j = 1, card[2] do
+            table.insert(self.deck, card[1])
+        end
     end
     
-    for i = 9,23 do
-        table.insert(self.deck, 2)
-    end
-
-    for i = 24,38 do 
-        table.insert(self.deck, 4)
-    end
-
-    for i = 39, 48 do
-        table.insert(self.deck, 7)
-    end
-
-    for i = 49,50 do
-        table.insert(self.deck, 10)
-    end
-
 end
 
 -- draws a random card from the deck, shrinks the deck by 1.
 function PowerCards:draw()
-    indexDrawn = love.math.random(1, #self.deck)
-    cardDrawn = self.deck[indexDrawn]
-    table.remove(self.deck, indexDrawn)
+    return table.remove(self.deck, love.math.random(1, #self.deck))
+end
+
+-- Test if deck is empty
+function PowerCards:isEmpty()
+    return #self.deck == 0
 end

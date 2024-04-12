@@ -5,7 +5,7 @@ function love.load()
     Object = require "lib.classic" -- OOP library
     require "src.player" -- Player class
     require "src.character" -- Character class
-    require "src.powerCards" -- deck of cards
+    require "src.powerCards" -- Deck of cards
 
     -- Iterate over Elements
     players = {} -- Create players table
@@ -16,7 +16,6 @@ function love.load()
 
         -- Create Master Character
         table.insert(player.characters, Character(element.." Master", "Master", 10))
-        print(player.characters[1].name)
 
         -- TODO
         -- Get one of each type of character

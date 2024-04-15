@@ -10,3 +10,7 @@ function Galaxy:new(galaxyType, x, y)
     self.spaceships = {}
     -- need to add some way to get to **Character** (face-down circle)
 end
+
+function Galaxy:draw()
+    -- Dorel todo
+end

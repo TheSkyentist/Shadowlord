@@ -2,9 +2,8 @@
 Galaxy = Object:extend()
 
 -- galaxy constructor
-function Galaxy:new(galaxyType, connectedGalaxies, x, y)
+function Galaxy:new(galaxyType, x, y)
     self.galaxyType = galaxyType
-    self.connectedGalaxies = {connectedGalaxies}
     self.positionX = x
     self.positionY = y
     self.occupyingCharacters = {}

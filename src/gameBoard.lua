@@ -32,14 +32,20 @@ function GameBoard:new()
             table.insert(words, word)
         end
 
-        -- Create a new galaxy
-        local galaxy = Galaxy(words[1])
-        table.insert(self.galaxies, galaxy)
-
-        -- Add connections
-        for j = 2,#words do
-            self.connections[i][j-1] = 1
-            self.connections[j-1][i] = 1
+        -- Get galaxy parameters by parsing the line
+        galaxyType = words[1] -- Galaxy Type
+        connections = {} -- Stored as list of integers
+        for connection in words[2]:gmatch("[^,]+") do
+            self.connections[i][tonumber(connection)] = 1
+            self.connections[tonumber(connection)][i] = 1
         end
+        coordinates = {} -- Stored as list of integers
+        for coordinate in words[3]:gmatch("[^,]+") do
+            table.insert(coordinates, tonumber(coordinate))
+        end
+
+        -- Create a new galaxy
+        local galaxy = Galaxy(galaxyType, coordinates[1], coordinates[2])
+        table.insert(self.galaxies, galaxy)
     end
 end

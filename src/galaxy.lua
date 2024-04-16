@@ -4,7 +4,7 @@ Galaxy = Object:extend()
 -- galaxy constructor
 function Galaxy:new(galaxyType, x, y)
 
-    -- Galay Type
+    -- Galaxy Type
     self.galaxyType = galaxyType
 
     -- Coordinates

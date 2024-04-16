@@ -8,9 +8,13 @@ function love.load()
     require "src.powerCards" -- Deck of cards class
     require "src.galaxy" -- Galaxy class
     require "src.gameBoard" -- GameBoard class
+    require "src.information" -- Information Box class
 
     -- Create GameBoard
     gameBoard = GameBoard()
+
+    -- create Information Box
+    informationBox = Information()
 
     -- Iterate over Elements
     print(#availableCharacters)
@@ -68,9 +72,11 @@ end
 -- Main game loop
 function love.draw()
     gameBoard:draw()
+    informationBox:draw()
+    love.graphics.setColor(1,1,1)
 end
 
 -- Update game state
 function love.update(dt)
     gameBoard:update(dt)
-end
+end 

@@ -18,7 +18,8 @@ function Galaxy:new(galaxyType, x, y)
     self.connections = {}
     self.occupyingCharacters = {}
     self.spaceships = {}
-    -- need to add some way to get to **Character** (face-down circle)
+    self.faceDownCharacter = nil
+
 end
 
 -- Galaxy draw function
@@ -26,6 +27,8 @@ function Galaxy:draw(transform)
 
     -- Transform coordinates
     local x,y = transform(self.x, self.y)
+
+    -- Set size depending on galaxy type
     if self.galaxyType == "Home" or self.galaxyType == "Galaxy" then
         size = 35
     elseif self.galaxyType == "Space Base" then

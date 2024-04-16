@@ -11,38 +11,33 @@ function love.load()
 
     -- Create GameBoard
     gameBoard = GameBoard()
-    for i,galaxy in ipairs(gameBoard.galaxies) do
-        print(galaxy.galaxyType)
-    end
 
-
-
-    -- -- Iterate over Elements
-    -- players = {} -- Create players table
-    -- for i, element in ipairs({"Earth", "Fire", "Water", "Air"}) do
+    -- Iterate over Elements
+    players = {} -- Create players table
+    for i, element in ipairs({"Earth", "Fire", "Water", "Air"}) do
         
-    --     -- Create player objects
-    --     player = Player(i, element)
+        -- Create player objects
+        player = Player(i, element)
 
-    --     -- Create Master Character
-    --     table.insert(player.characters, Character(element.." Master", "Master", 10))
+        -- Create Master Character
+        table.insert(player.characters, Character(element.." Master", "Master", 10))
 
-    --     -- TODO
-    --     -- Get one of each type of character
-    --     -- Iterate over character types
+        -- TODO
+        -- Get one of each type of character
+        -- Iterate over character types
 
-    --     -- Append player to players table
-    --     table.insert(players,player)
+        -- Append player to players table
+        table.insert(players,player)
 
-    -- end
+    end
 end
 
 -- Main game loop
 function love.draw()
-    love.graphics.print('Hello World!', 400, 300)
+    gameBoard:draw()
 end
 
 -- Update game state
 function love.update(dt)
-
+    gameBoard:update(dt)
 end

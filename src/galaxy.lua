@@ -37,6 +37,7 @@ function Galaxy:draw(transform)
         size = 40
     end
 
+    love.graphics.setColor(1,1,1)
     love.graphics.circle("fill", x, y, size)
 end
 

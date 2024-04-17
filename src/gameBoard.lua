@@ -52,12 +52,7 @@ function GameBoard:new()
         local galaxy = Galaxy(galaxyType, coordinates[1], coordinates[2])
         table.insert(self.galaxies, galaxy)
     end
-    -- for i, row in ipairs(self.connections) do
-    --     for j, connection in ipairs(row) do
-    --         print(connection)
-    --     end
-    --     print()
-    -- end
+
     -- Iterate over galaxies and add connections
     for i,galaxy in ipairs(self.galaxies) do
 
@@ -122,10 +117,11 @@ end
 
 -- Transform from X,Y coordiantes from galaxy (-1,1,-1,1) to window coordinates along with rotation
 function GameBoard.transform(x,y)
-    theta = 0-- No rotation for now
+
+    -- (Clockwise) Rotation Angle
+    theta = 0
 
     -- Rotate x,y by theta
-    local theta = -theta -- Rotate clockwise (need to reverse since we flip y)
     local xr = x * math.cos(theta) - y * math.sin(theta)
     local yr = x * math.sin(theta) + y * math.cos(theta)
 

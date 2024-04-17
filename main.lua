@@ -17,7 +17,6 @@ function love.load()
     informationBox = Information()
 
     -- Iterate over Elements
-    print(#availableCharacters)
     players = {} -- Create players table
     for i, element in ipairs({"Earth", "Fire", "Water", "Air"}) do
         
@@ -45,6 +44,11 @@ function love.load()
             )
         end
 
+        -- Give each player character a saceship
+        for j, character in ipairs(player.characters) do
+            character.numSpaceships = 1
+        end
+
         -- Append player to players table
         table.insert(players,player)
 
@@ -54,7 +58,6 @@ function love.load()
     for i, galaxy in ipairs(gameBoard.galaxies) do
         
         -- Get random character if on a valid galaxy
-        print(galaxy.galaxyType)
         if (galaxy.galaxyType ~= "Lost Kingdom") and (galaxy.galaxyType ~= "Home")then
             galaxy.faceDownCharacter = table.remove(availableCharacters,love.math.random(1,#availableCharacters))
         end
@@ -63,6 +66,20 @@ function love.load()
 
     -- Decide which player goes first
     currentPlayer = love.math.random(1,#players) -- Index of current player
+
+    -- Place each player on each home galaxy
+    -- Clockwise turn order
+    for i,index in ipairs({1,12,29,18}) do
+
+        -- Place player characters on galaxy
+        galaxy = gameBoard.galaxies[index]
+        for j, character in ipairs(players[currentPlayer].characters) do
+            table.insert(galaxy.occupyingCharacters, character)
+        end
+
+        -- Increment player
+        currentPlayer = (currentPlayer % #players) + 1
+    end
 
     -- Create Power Cards
     powerCards = PowerCards()
@@ -73,7 +90,6 @@ end
 function love.draw()
     gameBoard:draw()
     informationBox:draw()
-    love.graphics.setColor(1,1,1)
 end
 
 -- Update game state

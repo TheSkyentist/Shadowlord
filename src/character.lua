@@ -9,6 +9,7 @@ function Character:new(name,characterType,strength)
     self.cards = {}
     self.powerStone = false
     self.numSpaceships = 0
+    self.player = nil
 end
 
 -- Load Available Characters

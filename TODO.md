@@ -21,7 +21,7 @@
         - If they have the power stone, they can only have 5 ships. 
         - Power stone applies in battle
     - Five Distinct Classes:
-    1) The Master (Unique)
+    1) The Lord (Unique)
         - **Player** loses the game if capture
         - Has eight (8) strength.
     2) The Warrior
@@ -36,7 +36,7 @@
     5) Shadow
         - Special Shadow Rules
     - Characters have names and artwork.
-- There are 4 Masters (Earth, Fire, Water, Air)
+- There are 4 Lords (Earth, Fire, Water, Air)
 - There are 8 Warriors (Randi,Holger,Viggo,Sten,Astrid,Axel,Bernhard,Kaare)
 - There are 8 Merchants (Vang,Svein,Faye,Folke,Selwyn,Arne,Elayne,Brandon)
 - There are 8 Diplomats (Elfrida,Sigurd,Bors,Gye,Erling,Ola,Deems,Aage)

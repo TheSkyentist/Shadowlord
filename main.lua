@@ -18,13 +18,16 @@ function love.load()
 
     -- Iterate over Elements
     players = {} -- Create players table
-    for i, element in ipairs({"Earth", "Fire", "Water", "Air"}) do
+    local  colors = {{1,0,0},{0,1,0},{1,1,0},{0,0,1}} -- Colors for each player
+    for i, element in ipairs({ "Fire","Earth", "Air","Water"}) do
         
         -- Create player objects
-        local player = Player(i, element)
+        local player = Player(i, element, colors[i])
 
-        -- Create Master Character
-        table.insert(player.characters, Character(element.." Master", "Master", 10))
+        -- Create Lord Character
+        local character = Character(element.." Lord", "Lord", 10)
+        character.player = player
+        table.insert(player.characters, character)
         
         -- Start with one Warrior and one Diplomat
         for  j, characterType in ipairs({"Warrior", "Diplomat"}) do
@@ -37,11 +40,10 @@ function love.load()
                 end
             end
 
-            -- Get random character            
-            table.insert(
-                player.characters,
-                table.remove(availableCharacters,available[love.math.random(1,#available)])
-            )
+            -- Get random character
+            local character = table.remove(availableCharacters,available[love.math.random(1,#available)])
+            character.player = player -- Set player
+            table.insert(player.characters,character)
         end
 
         -- Give each player character a saceship
@@ -58,7 +60,7 @@ function love.load()
     for i, galaxy in ipairs(gameBoard.galaxies) do
         
         -- Get random character if on a valid galaxy
-        if (galaxy.galaxyType ~= "Lost Kingdom") and (galaxy.galaxyType ~= "Home")then
+        if (galaxy.galaxyType ~= "Lost Kingdom") and (galaxy.galaxyType ~= "Home") then
             galaxy.faceDownCharacter = table.remove(availableCharacters,love.math.random(1,#availableCharacters))
         end
 
@@ -68,8 +70,7 @@ function love.load()
     currentPlayer = love.math.random(1,#players) -- Index of current player
 
     -- Place each player on each home galaxy
-    -- Clockwise turn order
-    for i,index in ipairs({1,12,29,18}) do
+    for i,index in ipairs({1,12,29,18}) do -- Clockwise turn order
 
         -- Place player characters on galaxy
         galaxy = gameBoard.galaxies[index]

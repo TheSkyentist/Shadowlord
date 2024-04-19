@@ -86,12 +86,8 @@ end
 -- Draw the game board
 function GameBoard:draw()
 
-    -- Draw each galaxy
-    for i, galaxy in ipairs(self.galaxies) do
-        galaxy:draw(self.transform)
-    end
-
     -- Draw connections
+    love.graphics.setColor({1,1,1})
     for i = 1,#self.connections do
         for j = 1,#self.connections do
             if self.connections[i][j] == 1 then
@@ -100,6 +96,11 @@ function GameBoard:draw()
                 love.graphics.line(x1,y1,x2,y2)
             end
         end
+    end
+
+    -- Draw each galaxy
+    for i, galaxy in ipairs(self.galaxies) do
+        galaxy:draw(self.transform)
     end
 
 end

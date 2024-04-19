@@ -17,8 +17,38 @@ function Galaxy:new(galaxyType, x, y)
     -- Galaxy properties
     self.connections = {}
     self.occupyingCharacters = {}
-    self.spaceships = {}
+    self.numSpaceships = 0
+    self.spaceshipPlayer = nil
     self.faceDownCharacter = nil
+
+end
+
+-- Find out Galaxy Owner
+function Galaxy:findPlayer()
+
+    -- Get list of players of characters on the galaxy
+    local players = {}
+    for i,character in ipairs(self.occupyingCharacters) do
+        add = true
+        for j,player in ipairs(players) do
+            if player == character.player then
+                add = false
+            end
+        end
+        if add then
+            table.insert(players,character.player)
+        end
+    end
+
+    -- If there is only one player, return that player
+    if #players == 1 then
+        return players[1]
+    elseif self.numSpaceships > 1 then
+        return self.spaceshipPlayer
+    end
+
+    -- Contested/Unnocupied
+    return nil
 
 end
 
@@ -37,8 +67,16 @@ function Galaxy:draw(transform)
         size = 40
     end
 
-    love.graphics.setColor(1,1,1)
+    -- Set color based on player
+    local player = self:findPlayer()
+    print(player)
+    if player then
+        love.graphics.setColor(player.color)
+    else
+        love.graphics.setColor({1,1,1})
+    end
     love.graphics.circle("fill", x, y, size)
+
 end
 
 -- Galaxy update function

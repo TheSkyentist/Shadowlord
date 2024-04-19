@@ -2,9 +2,10 @@
 Player = Object:extend()
 
 -- player constructor
-function Player:new(name, element)
-    self.characters = {}
-    self.element = element
-    self.hand = {}
+function Player:new(name, element, color)
     self.name = name
+    self.element = element
+    self.color = color
+    self.characters = {}
+    self.hand = {}
 end

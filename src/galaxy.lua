@@ -56,3 +56,30 @@ function Galaxy:update(dt)
     self.y = self.y0 + (noise-0.5)*noiseStrength
     
 end
+
+function Galaxy:galaxiesReached(playerSteps)
+    
+    local totalPossibleMoves = {self}
+    local value
+    local possibleMoves = {}
+
+    for i = 1,playerSteps do
+
+        for j, connection in ipairs(totalPossibleMoves) do
+            table.insert(totalPossibleMoves, connection)
+        end
+
+    end
+
+
+    for i = 1, #totalPossibleMoves do
+        value = totalPossibleMoves[i]
+
+        for j = 1, #totalPossibleMoves do
+            if totalPossibleMoves[j] ~= value then
+                table.insert(possibleMoves, totalPossibleMoves[j])
+            end
+        end
+    end
+    return totalPossibleMoves
+end

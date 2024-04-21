@@ -57,29 +57,58 @@ function Galaxy:update(dt)
     
 end
 
-function Galaxy:galaxiesReached(playerSteps)
-    
-    local totalPossibleMoves = {self}
-    local value
-    local possibleMoves = {}
+-- Recursively 
 
-    for i = 1,playerSteps do
+function Galaxy:galaxiesReached(nSteps)
 
-        for j, connection in ipairs(totalPossibleMoves) do
-            table.insert(totalPossibleMoves, connection)
+    -- If no steps, return just yourself
+    if nSteps == 0 then
+        return {self}
+
+    -- If just one step, return galaxy you are on, along with galaxies we are connected to
+    elseif nSteps == 1 then
+
+        -- Table of galaxies we can move to\
+        
+        local possibleMoves = {self}
+
+        -- iterates through the totalPossibleMoves table and for each galaxy, adds its connections
+        for i, connection in ipairs(self.connections) do
+            table.insert(possibleMoves, connection)
         end
 
-    end
+    else
 
+        -- Empty list of possible connection
+        local possibleMoves = {}
+        
+        -- Iterte through all our connections
+        for i,connection in ipairs(self.connections) do
 
-    for i = 1, #totalPossibleMoves do
-        value = totalPossibleMoves[i]
+            -- Get the galaxies it reaches with one less step.
+            for j,subconnection in ipairs(connection.galaxiesReached(nSteps-1)) do
 
-        for j = 1, #totalPossibleMoves do
-            if totalPossibleMoves[j] ~= value then
-                table.insert(possibleMoves, totalPossibleMoves[j])
+                -- Default is to add to list
+                local add = true
+
+                -- Check if it is in the list
+                for k,possibleMove in ipairs(possibleMoves) do
+                    
+                    -- Iff in the list, don't add it
+                    if possibleMove == subconnection then
+                        add = false
+                        break -- No need to check the rest of the list
+                    end
+                    
+                end
+                
+                if add then
+                    table.insert(possibleMoves,subconnection)
+                end
             end
         end
+
+        return possibleMoves
+
     end
-    return totalPossibleMoves
 end

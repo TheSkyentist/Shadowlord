@@ -115,6 +115,8 @@ function Galaxy:galaxiesReached(nSteps)
             table.insert(possibleMoves, connection)
         end
 
+        return possibleMoves
+
     else
 
         -- Empty list of possible connection
@@ -124,7 +126,7 @@ function Galaxy:galaxiesReached(nSteps)
         for i,connection in ipairs(self.connections) do
 
             -- Get the galaxies it reaches with one less step.
-            for j,subconnection in ipairs(connection.galaxiesReached(nSteps-1)) do
+            for j,subconnection in ipairs(connection:galaxiesReached(nSteps-1)) do
 
                 -- Default is to add to list
                 local add = true
